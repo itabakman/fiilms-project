@@ -5,3 +5,4 @@ node_modules
 /.idea/inspectionProfiles/Project_Default.xml
 /.idea/vcs.xml
 /.idea/.gitignore
+/.idea/prettier.xml

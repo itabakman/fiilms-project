@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import slugify from "slugify";
 
 export const useOnSubmit = () => {
-  return useCallback(async (values) => {
+  return useCallback(async (values, { resetForm }) => {
     const { name, duration } = values;
     const slug = slugify(values.name, {
       locale: "ru",
@@ -17,9 +17,9 @@ export const useOnSubmit = () => {
         },
         body: JSON.stringify({ name, duration, slug }),
       });
-      console.log(JSON.stringify({ name, duration, slug }));
-    } catch (e: any) {
-      console.error(e.message);
+      resetForm();
+    } catch (e) {
+      console.error(e);
     }
   }, []);
 };

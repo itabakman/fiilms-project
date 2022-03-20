@@ -4,6 +4,7 @@ export class FilmController {
   async create(req, res) {
     try {
       const { name, slug, duration } = req.body;
+
       if (!name || !slug || !duration) {
         return res.status(400).send("Заполни по-человечески");
       }
@@ -42,5 +43,19 @@ export class FilmController {
     const films = await Film.findAll();
 
     return res.json(films);
+  }
+
+  async delete(req, res) {
+    const { slug } = req.params;
+
+    try {
+      if (slug) {
+        await Film.destroy({ where: { slug } });
+      }
+    } catch (e) {
+      return res.status(400).send("Удаление не удалось");
+    }
+
+    return res.status(200).send("Успешно удалено");
   }
 }

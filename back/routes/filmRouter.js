@@ -11,3 +11,5 @@ filmRouter.post("/", filmController.create);
 filmRouter.patch("/", filmController.patch);
 
 filmRouter.get("/", filmController.getAll);
+
+filmRouter.delete("/:slug", filmController.delete);

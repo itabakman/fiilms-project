@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRouter, Router } from "next/router";
 import { Wrapper } from "@components/Wrapper";
 import { Author } from "interfaces/film";
@@ -16,6 +16,19 @@ const Film = ({ name, duration, author }: Props) => {
   const {
     query: { slug },
   } = useRouter();
+
+  const [loading, setLoading] = useState(false);
+
+  const onDelete = async () => {
+    setLoading(true);
+
+    await fetch(`http://localhost:5001/api/film/${slug}`, {
+      method: "DELETE",
+    });
+
+    setLoading(false);
+  };
+
   return (
     <Wrapper>
       <div className={styles.links}>
@@ -29,11 +42,9 @@ const Film = ({ name, duration, author }: Props) => {
       <div>film slug is : {slug}</div>
       <div>Film name: {name}</div>
       <div>Duration: {duration}</div>
-      {author && (
-        <div>
-          Author: {author?.firstName} {author?.lastName}
-        </div>
-      )}
+      <button className={styles.button} onClick={onDelete} disabled={loading}>
+        Удалить
+      </button>
     </Wrapper>
   );
 };
