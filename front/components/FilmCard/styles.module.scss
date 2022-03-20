@@ -1,0 +1,22 @@
+.film {
+  min-width: 280px;
+  max-width: 320px;
+  width: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: #0070f3 1px solid;
+  border-radius: 20px;
+  padding: 16px;
+  cursor: pointer;
+
+  &:hover {
+    border: olivedrab 1px solid;
+    transition: 0.2s;
+    box-shadow: 2px -2px olivedrab;
+  }
+}
+
+.row {
+  display: flex;
+}
