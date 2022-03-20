@@ -7,15 +7,15 @@ import { dbConnection } from "./db.js";
 const app = express();
 config();
 
-const start = () => {
+const start = async () => {
   try {
-    dbConnection.authenticate();
-    dbConnection.sync();
+    await dbConnection.authenticate();
+    await dbConnection.sync();
     app.use(cors());
     app.use(express.json());
 
     app.use("/api", router);
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT || 5002, () => {
       try {
         console.log(`Server started on port ${process.env.PORT}`);
       } catch (e) {
