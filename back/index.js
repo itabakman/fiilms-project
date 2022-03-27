@@ -10,7 +10,7 @@ config();
 const start = async () => {
   try {
     await dbConnection.authenticate();
-    await dbConnection.sync();
+    await dbConnection.sync({ force: true });
     app.use(cors());
     app.use(express.json());
 

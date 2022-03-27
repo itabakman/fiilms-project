@@ -1,10 +1,11 @@
 import React from "react";
 import { Wrapper } from "@components/Wrapper";
 import { Film } from "@interfaces/film";
+import FilmCard from "@components/FilmCard";
 
 import styles from "./styles.module.scss";
-import FilmCard from "@components/FilmCard";
-import Link from "next/link";
+import { Navbar } from "@components/Navbar";
+import { useRouter } from "next/router";
 
 type Props = {
   films: Film[];
@@ -15,9 +16,11 @@ const Films = ({ films }: Props) => {
     <FilmCard key={item.slug} film={item} />
   ));
 
+  const { pathname } = useRouter();
+
   return (
     <Wrapper>
-      <Link href="/">Main</Link>
+      <Navbar active={pathname} />
       <div className={styles.films}>{filmNodes}</div>
     </Wrapper>
   );

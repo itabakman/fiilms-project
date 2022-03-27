@@ -10,11 +10,11 @@
   flex-direction: column;
   gap: 12px 0;
   margin-bottom: 24px;
-}
 
-.link:hover {
-  color: #0070f3;
-  cursor: pointer;
+  &:hover {
+    color: #0070f3;
+    cursor: pointer;
+  }
 }
 
 .button {

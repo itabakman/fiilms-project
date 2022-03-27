@@ -1,15 +1,22 @@
 import { Film } from "../models/index.js";
+import { checkObjectFields } from "../helpers/index.js";
+import slugify from "slugify";
 
 export class FilmController {
   async create(req, res) {
     try {
-      const { name, slug, duration } = req.body;
+      const { name, duration, budget, imdb } = req.body;
 
-      if (!name || !slug || !duration) {
+      if (!checkObjectFields(req.body)) {
         return res.status(400).send("Заполни по-человечески");
       }
+      const slug = slugify(name, {
+        locale: "ru",
+        lower: true,
+      });
 
-      const film = await Film.create({ name, slug, duration });
+      const film = await Film.create({ name, slug, duration, budget, imdb });
+
       return res.json(film);
     } catch (e) {
       console.error(e.message);
@@ -40,9 +47,12 @@ export class FilmController {
   }
 
   async getAll(req, res) {
-    const films = await Film.findAll();
-
-    return res.json(films);
+    try {
+      const films = await Film.findAll();
+      return res.json(films);
+    } catch (e) {
+      console.log(3);
+    }
   }
 
   async delete(req, res) {

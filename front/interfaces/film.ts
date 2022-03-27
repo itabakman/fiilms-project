@@ -2,6 +2,11 @@ export type Film = {
   name: string;
   slug: string;
   duration: number;
+  budget: number; // in $
+  language: string;
+  imdb: number;
+  year: number;
+  author?: Author;
 };
 
 export type Author = {

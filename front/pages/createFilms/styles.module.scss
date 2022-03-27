@@ -10,3 +10,13 @@
   height: 40px;
   font-size: 16px;
 }
+
+.button {
+  width: 320px;
+  height: 40px;
+  font-size: 16px;
+  
+  &:hover {
+    cursor: pointer;
+  }
+}

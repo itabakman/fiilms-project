@@ -1,13 +1,8 @@
 import { useCallback } from "react";
-import slugify from "slugify";
 
-export const useOnSubmit = () => {
-  return useCallback(async (values, { resetForm }) => {
+export const useOnSubmit = (reset: () => void) => {
+  return useCallback(async (values) => {
     const { name, duration } = values;
-    const slug = slugify(values.name, {
-      locale: "ru",
-      lower: true,
-    });
 
     try {
       await fetch("http://localhost:5001/api/film/", {
@@ -15,9 +10,9 @@ export const useOnSubmit = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, duration, slug }),
+        body: JSON.stringify({ name, duration }),
       });
-      resetForm();
+      reset();
     } catch (e) {
       console.error(e);
     }
