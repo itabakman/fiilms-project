@@ -11,6 +11,7 @@ type Props = {
 
 const FilmCard = ({ film }: Props) => {
   const router = useRouter();
+
   const onClick = () => {
     router.push(`films/${film.slug}`);
   };

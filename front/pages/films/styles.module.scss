@@ -5,6 +5,12 @@
   margin-top: 20px;
 }
 
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .links {
   display: flex;
   flex-direction: column;
@@ -20,5 +26,11 @@
 .button {
   font-size: 16px;
   height: 24px;
-  width: auto;
+  width: 240px;
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0 12px;
 }

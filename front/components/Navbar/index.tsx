@@ -14,7 +14,6 @@ export const Navbar: FC<Props> = ({ active }: Props) => {
   const toggleOpen = () => {
     setOpen((prev) => !prev);
   };
-  console.log(active);
 
   const linksNodes = links.map((item) => {
     const isActive =

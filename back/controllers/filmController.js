@@ -5,21 +5,23 @@ import slugify from "slugify";
 export class FilmController {
   async create(req, res) {
     try {
-      const { name, duration, budget, imdb } = req.body;
+      const newFilm = req.body;
 
       if (!checkObjectFields(req.body)) {
         return res.status(400).send("Заполни по-человечески");
       }
-      const slug = slugify(name, {
+
+      const slug = slugify(newFilm.name, {
         locale: "ru",
         lower: true,
       });
 
-      const film = await Film.create({ name, slug, duration, budget, imdb });
+      const film = await Film.create({ ...newFilm, slug });
 
-      return res.json(film);
+      return res.status(200).json(film);
     } catch (e) {
       console.error(e.message);
+
       return res.status(500).send("Ошибка вышла");
     }
   }
@@ -31,41 +33,45 @@ export class FilmController {
         where: { slug },
       });
 
-      return res.json(film);
+      return res.status(200).json(film);
     } catch (e) {
       return e;
     }
   }
 
   async patch(req, res) {
-    const { name, slug, duration } = req.body;
+    try {
+      const { slug, ...props } = req.body;
 
-    await Film.update({ name, duration }, { where: { slug } });
-    const film = await Film.findOne({ where: { slug } });
+      await Film.update({ ...props }, { where: { slug } });
+      const film = await Film.findOne({ where: { slug } });
 
-    return res.json(film);
+      return res.status(200).json(film);
+    } catch (e) {
+      return res.status(400).send("Изменение не удалось");
+    }
   }
 
   async getAll(req, res) {
     try {
       const films = await Film.findAll();
-      return res.json(films);
+
+      return res.status(200).json(films);
     } catch (e) {
-      console.log(3);
+      return res.status(400).send("Не удалось получить все фильмы");
     }
   }
 
   async delete(req, res) {
-    const { slug } = req.params;
-
     try {
+      const { slug } = req.params;
       if (slug) {
         await Film.destroy({ where: { slug } });
       }
+
+      return res.status(200).send("Успешно удалено");
     } catch (e) {
       return res.status(400).send("Удаление не удалось");
     }
-
-    return res.status(200).send("Успешно удалено");
   }
 }

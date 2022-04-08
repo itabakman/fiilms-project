@@ -20,11 +20,23 @@ export const Film = dbConnection.define("film", {
     defaultValue: null,
   },
   imdb: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     defaultValue: null,
   },
   budget: {
     type: DataTypes.INTEGER,
+    defaultValue: null,
+  },
+  year: {
+    type: DataTypes.INTEGER,
+    defaultValue: null,
+  },
+  language: {
+    type: DataTypes.STRING,
+    defaultValue: null,
+  },
+  description: {
+    type: DataTypes.STRING,
     defaultValue: null,
   },
 });
