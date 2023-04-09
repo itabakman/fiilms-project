@@ -10,15 +10,15 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.8.8",
-    "next": "12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-hook-form": "^7.28.1",
+    "next": "^13.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@types/node": "17.0.21",
-    "@types/react": "17.0.40",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.33",
     "eslint": "8.11.0",
     "eslint-config-next": "12.1.0",
     "scss": "^0.2.4",

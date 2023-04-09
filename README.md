@@ -1,4 +1,4 @@
 # films-project
 Full stack app for films
-Front Next + Formik Typescript
+Front Next Typescript
 Back Node Express Postgresql

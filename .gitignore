@@ -6,3 +6,4 @@ node_modules
 /.idea/vcs.xml
 /.idea/.gitignore
 /.idea/prettier.xml
+/.idea/watcherTasks.xml
